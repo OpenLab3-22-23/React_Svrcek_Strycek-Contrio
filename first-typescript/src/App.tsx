@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import CountryResult from './CountryResult'
 import Headher from './Headher'
@@ -10,7 +9,9 @@ function App() {
   return (
     <div className="App">
       <Headher />
-      <CountryResult />
+      <div className='country-flex'>
+        <CountryResult />
+      </div>
     </div>
   )
 }

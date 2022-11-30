@@ -1,8 +1,8 @@
-export default function Switch() {
+export default function Slider() {
     return (
-        <div>
-             <div>
-            <p id="city" className="slider-paragraph"></p>
+        <div className="slider-box">
+          <div>
+            <p id="city" className="slider-paragraph">Country</p>
           </div>
           <div className="slider-cell">
             <label className="switch">
@@ -11,7 +11,7 @@ export default function Switch() {
             </label>
           </div>
           <div>
-            <p id="country" className="slider-paragraph"></p>
+            <p id="country" className="slider-paragraph">City</p>
           </div>
         </div>
     )

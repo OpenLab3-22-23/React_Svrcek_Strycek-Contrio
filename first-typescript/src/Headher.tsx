@@ -1,12 +1,13 @@
 import SearchBar from "./SearchBar"
-import Switch from "./Switch"
+import Slider from "./Slider"
+import Switch from "./Slider"
 
 export default function Headher() {
     return (
-        <div>
-            <h1>Contrio</h1>
+        <div className="headher-box">
+            <h1 className="headher">Contrio</h1>
             <SearchBar />
-            <Switch />
+            <Slider />
         </div>
     )
 }
