@@ -12,7 +12,14 @@ interface Country {
     regions : number;
     callingCode : number;
     population : number;
-}
+  }
+  
+  interface City {
+    name : string;
+    country : string;
+    region : string;
+    population : number;
+  }
 
 export default function CountryResult() {
 
