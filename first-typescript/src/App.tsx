@@ -3,24 +3,26 @@ import './App.css'
 import CountryResult from './CountryResult'
 import Headher from './Headher'
 
-async function getAllDAta() {
-  if (slider) {
-      await getCity();
-  }
-  else {
-      await getCountry();
-      await delay(1000);
-      await getCountryDetails();
+function App() {
+  const [count, setCount] = useState(0);
+  const[slider, setSlider]=useState(false);
+
+  async function getAllDAta() {
+    if (slider) {
+      console.log("City")
+      // await getCity();
+    }
+    else {
+      console.log("Country")
+      // await getCountry();
+      // await delay(1000);
+      // await getCountryDetails();
+    }
   }
   
-}
-
-function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="App">
-      <Headher />
+      <Headher slider={slider} setSlider={setSlider} onClick={getAllDAta}/>
       <div className='country-flex'>
         <CountryResult />
       </div>

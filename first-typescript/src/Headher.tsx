@@ -1,13 +1,12 @@
 import SearchBar from "./SearchBar"
 import Slider from "./Slider"
-import Switch from "./Slider"
 
-export default function Headher() {
+export default function Headher({slider, setSlider, onClick}: {slider: boolean, setSlider: (slider: boolean) => void, onClick : () => void}) {
     return (
         <div className="headher-box">
             <h1 className="headher">Contrio</h1>
-            <SearchBar />
-            <Slider />
+            <SearchBar onClick={onClick}/>
+            <Slider slider={slider} setSlider={setSlider}/>
         </div>
     )
 }
