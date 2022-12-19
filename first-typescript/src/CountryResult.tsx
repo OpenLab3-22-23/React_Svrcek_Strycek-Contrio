@@ -21,6 +21,26 @@ interface Country {
     population : number;
   }
 
+//   export default function CountryResult() {
+
+//     const[country, setCountry] = useState<City>(
+//     {
+//     name : "Bratislava",
+//     country : "Slovakia",
+//     region : "Bratislava Region",
+//     population : 475503,
+//     });
+
+//     return (
+//         <div>
+//             <h2 className="country-name">{country.name}</h2>
+//             <p>Country: {country.country}</p>
+//             <p>Region: {country.region}</p>
+//             <p>Population: {country.population}</p>
+//         </div>
+//     )
+// }
+
 export default function CountryResult() {
 
     const[country, setCountry] = useState<Country>(
