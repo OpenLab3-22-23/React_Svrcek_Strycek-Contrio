@@ -15,7 +15,7 @@ let text:string = "";
 
 function App() {
   const[slider, setSlider]=useState(false);
-  const[cityData, setCityData]=useState<Array<any>>([]);
+  const[result, setResult]=useState<Array<City>>([]);
   const[countryData, setCountryData]=useState([]);
   const[text, setText]=useState("");
 
@@ -47,7 +47,7 @@ function App() {
       }
     };
   
-    fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=10&minPopulation=15000&namePrefix=${tmpText}&types=CITY`, options)
+    fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=10&minPopulation=10000&namePrefix=${tmpText}&types=CITY`, options)
     .then(response => response.json())
     .then(response => {
   
@@ -64,8 +64,7 @@ function App() {
       if (CityData[0] == null) {
         confirm("This city doesn't exist")
       }
-      setCityData(CityData);
-      // zobrazit data
+      setResult(CityData);
     })
     .catch(err => console.error(err));
   }
@@ -74,7 +73,7 @@ function App() {
     <div className="App">
       <Headher slider={slider} setSlider={setSlider} onClick={getAllDAta} text={text} setText={setText}/>
       <div className='country-flex'>
-        {slider ? <CityResult cityData={cityData}/> : <CountryResult />}
+        {result.length && slider ? <CityResult result={result}/> : <CountryResult />}
       </div>
     </div>
   )
