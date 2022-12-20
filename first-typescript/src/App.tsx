@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import CountryResult from './CountryResult'
+import CityResult from './CityResult'
 import Headher from './Headher'
 
 interface City {
@@ -13,8 +14,10 @@ interface City {
 let text:string = "";
 
 function App() {
-  const [count, setCount] = useState(0);
   const[slider, setSlider]=useState(false);
+  const[cityData, setCityData]=useState<Array<any>>([]);
+  const[countryData, setCountryData]=useState([]);
+  const[text, setText]=useState("");
 
   async function getAllDAta() {
     if (slider) {
@@ -23,16 +26,19 @@ function App() {
     }
     else {
       console.log("Country")
+      console.log(text);
       // await getCountry();
       // await delay(1000);
       // await getCountryDetails();
     }
   }
 
-  function getCity(): void {
-    // text = searchOutput.value;
-    text = "Bratis";
-  
+  async function getCity() {
+    let tmpText = text;
+    if(!tmpText) {
+      tmpText = "Bratislava";
+    }
+
     const options = {
       method: 'GET',
       headers: {
@@ -41,7 +47,7 @@ function App() {
       }
     };
   
-    fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=10&minPopulation=15000&namePrefix=${text}&types=CITY`, options)
+    fetch(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=10&minPopulation=15000&namePrefix=${tmpText}&types=CITY`, options)
     .then(response => response.json())
     .then(response => {
   
@@ -58,7 +64,7 @@ function App() {
       if (CityData[0] == null) {
         confirm("This city doesn't exist")
       }
-      console.log(CityData);
+      setCityData(CityData);
       // zobrazit data
     })
     .catch(err => console.error(err));
@@ -66,9 +72,9 @@ function App() {
   
   return (
     <div className="App">
-      <Headher slider={slider} setSlider={setSlider} onClick={getAllDAta}/>
+      <Headher slider={slider} setSlider={setSlider} onClick={getAllDAta} text={text} setText={setText}/>
       <div className='country-flex'>
-        <CountryResult />
+        {slider ? <CityResult cityData={cityData}/> : <CountryResult />}
       </div>
     </div>
   )
